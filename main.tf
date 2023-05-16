@@ -58,7 +58,3 @@ module "blog_sg" {
 
 }
 
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "4.0.2"
-}
