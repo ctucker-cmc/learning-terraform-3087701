@@ -35,8 +35,8 @@ resource "aws_instance" "blog" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
 
-  subnet_id              = module.dev.public_subnets[0]
-  vpc_security_group_ids = [module.dev.security_group_id]
+  subnet_id              = module.vpc.public_subnets[0]
+  vpc_security_group_ids = [module.blog_sg.security_group_id]
 
   tags = {
     Name = "HelloWorld"
@@ -51,8 +51,8 @@ module "alb" {
 
   load_balancer_type = "application"
 
-  vpc_id             = module.dev.vpc_id
-  subnets            = module.dev.public_subnets
+  vpc_id             = module.vpc.vpc_id
+  subnets            = module.vpc.public_subnets
   security_groups    = [module.blog_sg.security_group_id]
  
 
