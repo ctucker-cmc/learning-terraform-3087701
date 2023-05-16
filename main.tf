@@ -101,3 +101,12 @@ module "blog_sg" {
 
 }
 
+resource "aws_route_table" "example" {
+  vpc_id = module.vpc.vpc_id
+
+  route = []
+
+  tags = {
+    Name = "example"
+  }
+}
