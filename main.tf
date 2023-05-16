@@ -104,6 +104,7 @@ module "blog_sg" {
 }
 
 resource "aws_route" "private_nat_gateway" {
+  route_table_id         = element(aws_route_table.private[*].id, count.index)
   count = "${var.private_subnet ? 0 : 1}"
   name  = private_subnet
 }
