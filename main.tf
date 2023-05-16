@@ -28,8 +28,8 @@ module "vpc" {
   tags = {
     Terraform = "true"
     Environment = "dev"
+    private_subnet = "false"
 
-  private_subnet = false
   }
 }
 
