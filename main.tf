@@ -28,6 +28,8 @@ module "vpc" {
   tags = {
     Terraform = "true"
     Environment = "dev"
+
+  private_subnet = false
   }
 }
 
@@ -101,12 +103,7 @@ module "blog_sg" {
 
 }
 
-resource "aws_route_table" "example" {
-  vpc_id = module.vpc.vpc_id
-
-  route = []
-
-  tags = {
-    Name = "example"
-  }
+resource "aws_route" "private_nat_gateway" {
+  count = "${var.private_subnet ? 0 : 1}"
+  name  = private_subnet
 }
